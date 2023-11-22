@@ -3,16 +3,18 @@
     padding: 0;
 }
 
-body{
+body {
     background-color: #0d0c0c;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
 }
-
-.onda_roxa{
-    position: absolute;
-    max-width: 100%;
-    background-color: #0d0c0c;
+.body {
+    position: relative;
+    
+}
+.onda_roxa {
+    width: 1800px;
+    height: auto;
 }
 
 .mascote{
@@ -20,10 +22,15 @@ body{
     width: 242px;
     height: 212px;
     right: 22px;
+    top: -10px;
 }
 
-.mascote_div{
-    max-width: 100%;
+.logo{
+    position: absolute;
+    height: 66px;
+    width: 59.3px;
+    top: 22px;
+    left: 5px;
 }
 
 .frase_efeito{
@@ -34,14 +41,6 @@ body{
     font-family: var(--font-inter);
     right: 275px;
     top: 65px;
-}
-
-.logo{
-    position: absolute;
-    height: 66px;
-    width: 59.3px;
-    top: 22px;
-    left: 5px;
 }
 
 .nome_empresa_1{
@@ -66,17 +65,18 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
     background-color: var(--color-gray-400);
     border: 2px solid var(--color-black);
     box-sizing: border-box;
     mix-blend-mode: normal;
+    position: absolute;
     width: 100%;
     height: 100px;
-    top:203px;
+    top: 188px;
 }
 
 .header_botao_1{
+    padding-left: 10px;
     width: 281.03px;
     display: flex;
     color: var(--color-fuchsia);
@@ -112,6 +112,7 @@ body{
 }
 
 .header_botao_3{
+    padding-right: 10px;
     display: flex;
     color: var(--color-fuchsia);
     font-family: var(--font-arial);
@@ -127,12 +128,26 @@ body{
     height: 54px;
 }
 
+.corpo{
+    margin-top: 200px;
+    display: flex;
+    height: auto;
+    justify-content: space-around;
+
+}
+
 .em_alta{
-    position: absolute;
-    top: 400px;
-    left: 100px;
-    height: 667px;
     width: 350px;
+    height: auto;
+    padding: 15px;
+
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+
     border-radius: var(--br-41xl);
     background-color: var(--color-gray-100);
     border: 2px solid var(--color-black);
@@ -142,15 +157,22 @@ body{
     font-size: var(--font-size-13xl);
 }
 
+.em_alta ul {
+    list-style-position: outside;
+}
+
+.em_alta ul li{
+    margin: 25px;
+}
+
 .atuais{
-    position: absolute;
-    top: 400px;
-    left: 470px;
-    height: auto;
     width: 1250px;
+    height: auto;
+    min-height: 100px;
     padding: 20px;
 
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-items: center;
     align-items: center;
     gap: 30px;
@@ -178,15 +200,15 @@ body{
     font-size: var(--font-size-13xl);
 }
 
-.post p{
-    overflow-wrap: break-word;
-}
-
-.post .header{
+.post .titulo{
     display: flex;
     align-items: center;
-    gap: 51px;
-    margin-bottom: 51px;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.post p{
+    overflow-wrap: break-word;
 }
 
 .img_atuais{
