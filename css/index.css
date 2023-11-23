@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+button{
+    cursor: pointer;
+}
+
 body {
     background-color: #0d0c0c;
     display: flex;
@@ -137,7 +141,7 @@ body {
 
 .em_alta{
     width: 350px;
-    height: auto;
+    height: 100%;
     padding: 15px;
 
     
@@ -166,7 +170,7 @@ body {
 
 .atuais{
     width: 1250px;
-    height: auto;
+    height: 100%;
     min-height: 100px;
     padding: 40px;
 
@@ -212,7 +216,7 @@ body {
     overflow-wrap: break-word;
 }
 
-.img_atuais{
+.img_post{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,6 +224,6 @@ body {
     margin-top: 30px;
 }
 
-.img_atuais p{ /* */
+.img_post p{ /* */
     margin-right: -120px; 
 }

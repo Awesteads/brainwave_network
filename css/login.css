@@ -12,18 +12,6 @@ form h1{
     color: var(--color-fuchsia);
 }
 
-form{
-    color: var(--color-fuchsia);
-
-}
-
-label {
-    font-size: 32px;
-
-    display: block;
-    text-align: center;
-}
-
 form input{
     font-size: 32px;
 

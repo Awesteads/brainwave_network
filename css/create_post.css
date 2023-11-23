@@ -1,0 +1,50 @@
+.novo_post {
+    display:flex; 
+    align-items: center;
+    flex-direction: column;
+
+    height: 100%;
+
+    gap: 28px;
+}
+
+.novo_post input{
+    font-size: 32px;
+
+    width: 577px;
+
+    padding: 20px 25px;
+
+    
+
+    border-radius: 79px;
+    border: 0px;
+    background-color: var(--color-blueviolet);
+}
+
+.novo_post textarea {
+    resize: none;
+
+    width: 1050px;
+    height: 400px;
+    
+    padding: 20px 50px;
+    
+    font-size: 32px;
+    line-height: 40px;
+
+    border-radius: 79px;
+    border: 0px;
+    background-color: var(--color-blueviolet);
+}
+
+input::placeholder{
+    font-style: italic;
+    text-align: center;
+}
+
+.novo_post button{
+    border: none;
+    appearance: none;
+    background-color: inherit;
+}
