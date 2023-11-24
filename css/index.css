@@ -227,3 +227,9 @@ body {
 .img_post p{ /* */
     margin-right: -120px; 
 }
+
+.img_post button{
+    border: none;
+    appearance: none;
+    background-color: inherit;
+}

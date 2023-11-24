@@ -10,12 +10,11 @@
 
 .novo_post input{
     font-size: 32px;
+    color: white;
 
     width: 577px;
 
     padding: 20px 25px;
-
-    
 
     border-radius: 79px;
     border: 0px;
@@ -32,6 +31,7 @@
     
     font-size: 32px;
     line-height: 40px;
+    color: white;
 
     border-radius: 79px;
     border: 0px;
@@ -41,6 +41,14 @@
 input::placeholder{
     font-style: italic;
     text-align: center;
+
+    color: white;
+    opacity: 0.7;
+}
+
+textarea::placeholder{
+    color: white;
+    opacity: 0.7;
 }
 
 .novo_post button{
