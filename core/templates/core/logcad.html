@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap">
+    </head>
+
+
+    <body>
+        <div class = "body">
+            <div>
+                <img class = "onda_roxa" src="{% static 'images/onda-roxa@2x.png' %}" alt="">
+                <img class = "mascote" src="{% static 'images/mascote@2x.png' %}" alt="">
+                <img class = "logo" src="{% static 'images/logo@2x.png' %}" alt="">
+                <em  class = "frase_efeito" >“Conectando mentes acadêmicas” - GRAN</em>
+                <div class = "nome_empresa_1">Brainwave</div>
+                <div class = "nome_empresa_2"><em>Network</em></div>
+                <div class = "cabecalho" >
+                    <div class = "header_botao_1">
+                        <a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
+                        
+                        <div style="align-self: center; margin-left: 10px;"><a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;">Início</a></div>
+                    </div>
+                    <a href="../pgs/create_post.html" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
+                    <div class = "header_botao_3"><div style="align-self: center; margin-right: 10px;"><a href="" style="text-decoration: none; color: inherit;">Login/Cadastro</a></div><a href="" style="text-decoration: none; color: inherit;"><img class = "login_icon" src="{% static 'images/pessoa@2x.png' %}" alt=""></a></div>
+                </div>
+            </div>
+
+            <div>
+                <div style="display: flex; justify-content: space-around;">
+                    <div class = "cadastro">
+                        <form method="post" action=".">
+                            {% csrf_token %}
+
+                            <h1>Cadastro</h1>
+                            {{ form.email }}
+
+                            {{ form.username }}
+
+                            {{ form.password1 }}
+
+                            {{ form.password2 }}
+
+                            {% if form.errors or form.non_field_errors %}
+                                <div class="error-container">
+                                    {% for field in form %}
+                                        {{ field.errors }}
+                                    {% endfor %}
+                    
+                                    {{ form.non_field_errors }}
+                    
+                                </div>
+                            {% endif %}
+
+                            <button type="submit" value="Submit">Cadastrar</button>
+                        </form>
+                    </div>
+
+                    <div class = "login">
+                        <form method="post" action=".">
+                            <h1>Log In</h1>
+                            {{ form.email }}
+
+                            {{ form.password1 }}    
+
+                            <button type="submit" value="Submit">Logar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

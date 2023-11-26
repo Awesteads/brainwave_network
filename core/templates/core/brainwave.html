@@ -1,37 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="stylesheet" href="./css/index.css" />
-        <link rel="stylesheet" href="./css/global.css" />
-        <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap"
-        />
-        <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap"
-        />
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap">
     </head>
+
     <body>
         <div class = "body">
             <div>
-                <img class = "onda_roxa" src="./img/onda-roxa@2x.png" alt="">
-                <img class = "mascote" src="./img/mascote@2x.png" alt="">
-                <img class = "logo" src="./img/logo@2x.png" alt="">
+                <img class = "onda_roxa" src="{% static 'images/onda-roxa@2x.png' %}" alt="">
+                <img class = "mascote" src="{% static 'images/mascote@2x.png' %}" alt="">
+                <img class = "logo" src="{% static 'images/logo@2x.png' %}" alt="">
                 <em  class = "frase_efeito" >“Conectando mentes acadêmicas” - GRAN</em>
                 <div class = "nome_empresa_1">Brainwave</div>
                 <div class = "nome_empresa_2"><em>Network</em></div>
                 
                 <div class = "cabecalho">
                     <div class = "header_botao_1">
-                        <a href="./index.html" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="./img/home@2x.png" alt=""></a>
+                        <a href="" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
                         
-                        <div style="align-self: center; margin-left: 10px;"><a href="./index.html" style="text-decoration: none; color: inherit;">Início</a></div>
+                        <div style="align-self: center; margin-left: 10px;"><a href="" style="text-decoration: none; color: inherit;">Início</a></div>
                     </div>
                     <a href="./pgs/create_post.html" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
-                    <div class = "header_botao_3"><div style="align-self: center; margin-right: 10px;"><a href="./pgs/login.html" style="text-decoration: none; color: inherit;">Login/Cadastro</a></div><a href="./pgs/login.html" style="text-decoration: none; color: inherit;"><img class = "login_icon" src="./img/pessoa@2x.png" alt=""></a></div>
+                    <div class = "header_botao_3"><div style="align-self: center; margin-right: 10px;"><a href="{% url 'core:signup' %}" style="text-decoration: none; color: inherit;">Login/Cadastro</a></div><a href="{% url 'core:signup' %}" style="text-decoration: none; color: inherit;"><img class = "login_icon" src="{% static 'images/pessoa@2x.png' %}" alt=""></a></div>
                 </div>
             </div>
             
@@ -39,12 +36,12 @@
                 <div class = "em_alta">
                     <h1>EM ALTA</h1>
                     <ul>
-                        <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 1</li></a>
-                        <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 2</li></a>
-                        <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 3</li></a>
-                        <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 4</li></a>
-                        <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 5</li></a>
-                        <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 6</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 1</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 2</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 3</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 4</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 5</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 6</li></a>
                     </ul>
                 </div>
 
@@ -58,10 +55,10 @@
                         <div class = "img_post">
                             <p>5</p>
                             <button>
-                                <img src="./img/brain-1@2x.png" alt="" style = "width: 50px; height: 47.4px;"> 
+                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
                             </button>
-                            <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;">
-                                <img src="./img/speechbubble-1-1@2x.png" alt="" style = "width: 61px; height: 58px;">
+                            <a href="#" style="text-decoration: none; color: inherit; height: 58px;">
+                                <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style = "width: 61px; height: 58px;">
                             </a>
                         </div>
                     </div>
@@ -75,10 +72,10 @@
                         <div class = "img_post">
                             <p>3</p>  
                             <button>
-                                <img src="./img/brain-1@2x.png" alt="" style = "width: 50px; height: 47.4px;"> 
+                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
                             </button>
-                            <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;">
-                                <img src="./img/speechbubble-1-1@2x.png" alt="" style = "width: 61px; height: 58px;">
+                            <a href="#" style="text-decoration: none; color: inherit; height: 58px;">
+                                <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style = "width: 61px; height: 58px;">
                             </a>
                         </div>
                     </div>
@@ -92,10 +89,10 @@
                         <div class = "img_post">
                             <p>1</p>  
                             <button>
-                                <img src="./img/brain-1@2x.png" alt="" style = "width: 50px; height: 47.4px;"> 
+                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
                             </button>
-                            <a href="./index.html" style="text-decoration: none; color: inherit; height: 58px;">
-                                <img src="./img/speechbubble-1-1@2x.png" alt="" style = "width: 61px; height: 58px;">
+                            <a href="#" style="text-decoration: none; color: inherit; height: 58px;">
+                                <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style = "width: 61px; height: 58px;">
                             </a>
                         </div>
                     </div>
@@ -106,5 +103,3 @@
         </div>
     </body>
 </html>
-
-
