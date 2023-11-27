@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{% static 'css/global.css' %}" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap">
+        <title>{% block title %}Cadastro | Brainwave{% endblock %}</title>
     </head>
 
 
@@ -25,9 +26,9 @@
                 
                 <div class = "cabecalho">
                     <div class = "header_botao_1">
-                        <a href="" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
+                        <a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
                         
-                        <div style="align-self: center; margin-left: 10px;"><a href="" style="text-decoration: none; color: inherit;">Início</a></div>
+                        <div style="align-self: center; margin-left: 10px;"><a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;">Início</a></div>
                     </div>
                     <a href="./pgs/create_post.html" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
 
