@@ -22,21 +22,44 @@
                 <em  class = "frase_efeito" >“Conectando mentes acadêmicas” - GRAN</em>
                 <div class = "nome_empresa_1">Brainwave</div>
                 <div class = "nome_empresa_2"><em>Network</em></div>
-                <div class = "cabecalho" >
+                
+                <div class = "cabecalho">
                     <div class = "header_botao_1">
-                        <a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
+                        <a href="" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
                         
-                        <div style="align-self: center; margin-left: 10px;"><a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;">Início</a></div>
+                        <div style="align-self: center; margin-left: 10px;"><a href="" style="text-decoration: none; color: inherit;">Início</a></div>
                     </div>
-                    <a href="../pgs/create_post.html" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
-                    <div class = "header_botao_3"><div style="align-self: center; margin-right: 10px;"><a href="" style="text-decoration: none; color: inherit;">Login/Cadastro</a></div><a href="" style="text-decoration: none; color: inherit;"><img class = "login_icon" src="{% static 'images/pessoa@2x.png' %}" alt=""></a></div>
+                    <a href="./pgs/create_post.html" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
+
+                    <div class="header_botao_3">
+                        <div style="align-self: center; margin-right: 10px;">
+                            {% if request.user.is_authenticated %} 
+                                <div class="dropdown">
+                                    <p href="javascript:void(0);" class="dropdown-toggle" style="text-decoration: none; margin-top: 20px;">{{ request.user.username }}</p>
+                                    <div class="dropdown-menu">
+                                        <a href="{% url 'core:logout' %}" style="text-decoration: none;">Sair</a>
+                                        <a href="" style="text-decoration: none;">Excluir</a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <a href="{% url 'core:register' %}" style="text-decoration: none; color: inherit;">Cadastro</a>
+                                <a href="{% url 'core:login' %}" style="text-decoration: none; color: inherit;">Login</a>
+                            {% endif %}
+                        </div>
+
+                        <a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;">
+                            <img class="login_icon" src="{% static 'images/pessoa@2x.png' %}" alt="">
+                        </a>
+                    </div>
                 </div>
             </div>
 
+
+            
             <div>
                 <div style="display: flex; justify-content: space-around;">
                     <div class = "cadastro">
-                        <form method="post" action=".">
+                        <form method="post" action="{% url 'core:register' %}">
                             {% csrf_token %}
 
                             <h1>Cadastro</h1>
@@ -60,17 +83,6 @@
                             {% endif %}
 
                             <button type="submit" value="Submit">Cadastrar</button>
-                        </form>
-                    </div>
-
-                    <div class = "login">
-                        <form method="post" action=".">
-                            <h1>Log In</h1>
-                            {{ form.email }}
-
-                            {{ form.password1 }}    
-
-                            <button type="submit" value="Submit">Logar</button>
                         </form>
                     </div>
                 </div>

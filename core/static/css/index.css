@@ -122,8 +122,6 @@ body {
     font-size: var(--font-size-13xl);
     justify-self: center;
     align-self: center;
-    
-
 }
 
 .login_icon{
@@ -232,4 +230,27 @@ body {
     border: none;
     appearance: none;
     background-color: inherit;
+}
+
+.dropdown {
+    text-decoration: none; 
+    color: inherit;
+}
+
+.dropdown-menu{
+    width: 150px;
+    position: absolute;
+    box-shadow: 0 0 5px #ee00ff;
+    display: none; 
+    border-radius: 5px;
+    background-color: #0d0c0c;
+}
+
+.dropdown-menu a{
+    display: block;
+    color: #ee00ff;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
 }
