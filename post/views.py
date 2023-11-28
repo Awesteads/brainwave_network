@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-
+from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from .forms import NewPostForm, EditPostForm, CommentForm
 from .models import Category, Post, Comment
 
@@ -105,9 +106,13 @@ def edit(request, pk):
 @login_required
 def delete(request, pk):
     post = get_object_or_404(Post, pk=pk, created_by=request.user)
-    post.delete()
 
-    return redirect('dashboard:index')
+    if request.method == 'POST':
+        post.delete()
+        return redirect('core:brainwave')
+
+    # Se o usuário não for o criador do post, levante uma exceção de permissão
+    raise PermissionDenied
 
 @login_required
 def like_post(request, post_id):
@@ -124,5 +129,35 @@ def like_post(request, post_id):
     likes_count = post.likes.count()
 
     return JsonResponse({'liked': not liked, 'likes_count': likes_count})
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    # Verifica se o usuário já curtiu o comentário
+    liked = comment.likes.filter(id=request.user.id).exists()
+
+    if liked:
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+
+    likes_count = comment.likes.count()
+
+    return JsonResponse({'liked': not liked, 'likes_count': likes_count})
+
+@login_required
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+
+    # Verifica se o usuário logado é o autor do comentário
+    if request.user == comment.user:
+        comment.delete()
+        messages.success(request, 'Comentário excluído com sucesso.')
+    else:
+        messages.error(request, 'Você não tem permissão para excluir este comentário.')
+
+    # Redireciona de volta à página do post ou para onde você desejar
+    return redirect('post:detail', pk=comment.post.pk)
 
 
