@@ -1,18 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/create_post.css' %}" /> {% static 'css/index.css' %}
         <link rel="stylesheet" href="{% static 'css/index.css' %}" />
         <link rel="stylesheet" href="{% static 'css/global.css' %}" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap">
-        <title>{% block title %}Cadastro | Brainwave{% endblock %}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap"/>
+        <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap"/>
+        <title>{% block title %}Criar Post | Brainwave{% endblock %}</title>
     </head>
-
 
     <body>
         <div class = "body">
@@ -23,6 +21,7 @@
                 <em  class = "frase_efeito" >“Conectando mentes acadêmicas” - GRAN</em>
                 <div class = "nome_empresa_1">Brainwave</div>
                 <div class = "nome_empresa_2"><em>Network</em></div>
+
                 
                 <div class = "cabecalho">
                     <div class = "header_botao_1">
@@ -39,7 +38,7 @@
                                     <p href="javascript:void(0);" class="dropdown-toggle" style="text-decoration: none; margin-top: 20px;">{{ request.user.username }}</p>
                                     <div class="dropdown-menu">
                                         <a href="{% url 'core:logout' %}" style="text-decoration: none;">Sair</a>
-                                        <a href="" style="text-decoration: none;">Excluir</a>
+                                        <a href="{% url 'core:delete' %}" style="text-decoration: none;">Excluir</a>
                                     </div>
                                 </div>
                             {% else %}
@@ -55,39 +54,39 @@
                 </div>
             </div>
 
-
-            
-            <div>
-                <div style="display: flex; justify-content: space-around;">
-                    <div class = "cadastro">
-                        <form method="post" action="{% url 'core:register' %}">
-                            {% csrf_token %}
-
-                            <h1>Cadastro</h1>
-                            {{ form.email }}
-
-                            {{ form.username }}
-
-                            {{ form.password1 }}
-
-                            {{ form.password2 }}
-
-                            {% if form.errors or form.non_field_errors %}
-                                <div class="error-container">
-                                    {% for field in form %}
-                                        {{ field.errors }}
-                                    {% endfor %}
-                    
-                                    {{ form.non_field_errors }}
-                    
-                                </div>
-                            {% endif %}
-
-                            <button type="submit" value="Submit">Cadastrar</button>
-                        </form>
-                    </div>
+            <div class="corpo">
+                <div class = "em_alta">
+                    <h1>EM ALTA</h1>
+                    <ul>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 1</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 2</li></a>
+                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 3</li></a>
+                    </ul>
                 </div>
-            </div>
+                <div class = "atuais">
+                    <form class="novo_post" method="post" action="." enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ form.titulo }}
+
+                        {{ form.texto }}
+
+                        {% if form.errors or form.non_field_errors %}
+                        <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                            {% for field in form %}
+                                {{ field.errors }}
+                            {% endfor %}
+                
+                            {{ form.non_field_errors }}
+                        </div>
+                        {% endif %}
+
+                        <button type="submit">
+                            <img src="{% static 'images/enviar-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
+                        </button>
+                    </form>
+                </div>
+            </div>  
         </div>
     </body>
 </html>

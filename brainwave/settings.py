@@ -21,7 +21,6 @@ LOGIN_REDIRECT_URL = '/brainwave/'
 LOGOUT_REDIRECT_URL = '/brainwave/'
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -33,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'item',
+    'post',
 ]
 
 MIDDLEWARE = [
@@ -115,7 +115,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

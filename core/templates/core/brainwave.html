@@ -30,7 +30,7 @@
                         
                         <div style="align-self: center; margin-left: 10px;"><a href="" style="text-decoration: none; color: inherit;">Início</a></div>
                     </div>
-                    <a href="./pgs/create_post.html" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
+                    <a href="{% url 'post:new' %}" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
 
                     <div class="header_botao_3">
                         <div style="align-self: center; margin-right: 10px;">
@@ -57,74 +57,63 @@
             
             <div class = "corpo">
                 <div class = "em_alta">
-                    <h1>EM ALTA</h1>
-                    <ul>
-                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 1</li></a>
-                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 2</li></a>
-                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 3</li></a>
-                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 4</li></a>
-                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 5</li></a>
-                        <a href="#" style="text-decoration: none; color: inherit; height: 58px;"><li>Titulo 6</li></a>
-                    </ul>
+                    <h1 style="color: #ee00ff; font-size: 35pt; text-decoration: underline;">Em Alta</h1>
+                    <ol>
+                        {% for post in posts_by_likes %}
+                            <a href="{% url 'post:detail' pk=post.id %}" style="text-decoration: underline; color: inherit; height: 58px; font-family: Lucida Console, monospace;">
+                                <li style="margin-left: 40px; padding-top: 10px;">{{ post.titulo }}</li>
+                            </a>
+                        {% endfor %}
+                    </ol>
                 </div>
 
-                <div class = "atuais">
-                    <div class = "post">
-                        <div class = "titulo">
-                            <p>USUÁRIO</p>
-                            <h1>TÍTULO</h1>
+                <div class="atuais">
+                    {% for post in posts_by_date %}
+                        <div class="post">
+                            <div class="titulo">
+                                <p style="text-decoration: none; color: #ee00ff; font-style: italic; font-family: Lucida Console, monospace; opacity: 0.9;">{{ post.created_by.username }}</p>
+                                <a style="text-decoration: none; color: #ee00ff; font-weight: bold; font-family: Arial, Helvetica, sans-serif;" href="{% url 'post:detail' pk=post.id %}">
+                                    <h1>{{ post.titulo }}</h1>
+                                </a>
+                            </div>
+                            <p style="text-decoration: none; color: white; text-align: justify; text-justify: inter-word; font-family: Lucida Console, monospace; opacity: 0.9;">{{ post.texto }}</p>
+                            <div class="img_post">
+                                <form style="display: flex; justify-content: center; align-items: center; padding-top: 30px; gap: 10px;">
+                                    <!-- Use o ID diretamente para a contagem de curtidas -->
+                                <p id="likes-count-{{ post.id }}">{{ post.likes.count }}</p>
+                                <button type="button" onclick="likePost({{ post.id }})" style="border: none; appearance: none; background-color: inherit;">
+                                    <img src="{% static 'images/brain-1@2x.png' %}" alt="" style="width: 50px; height: 47.4px;">
+                                </button>
+                                </form>
+                                <a href="{% url 'post:detail' pk=post.id %}" style="text-decoration: none; color: inherit; height: 58px;">
+                                    <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style="width: 61px; height: 58px;">
+                                </a>
+                            </div>
                         </div>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <div class = "img_post">
-                            <p>5</p>
-                            <button>
-                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
-                            </button>
-                            <a href="#" style="text-decoration: none; color: inherit; height: 58px;">
-                                <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style = "width: 61px; height: 58px;">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class = "post">
-                        <div class = "titulo">
-                            <p>USUÁRIO</p>
-                            <h1>TÍTULO</h1>
-                        </div>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                        <div class = "img_post">
-                            <p>3</p>  
-                            <button>
-                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
-                            </button>
-                            <a href="#" style="text-decoration: none; color: inherit; height: 58px;">
-                                <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style = "width: 61px; height: 58px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class = "post">
-                        <div class = "titulo">
-                            <p>USUÁRIO</p>
-                            <h1>TÍTULO</h1>
-                        </div>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <div class = "img_post">
-                            <p>1</p>  
-                            <button>
-                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
-                            </button>
-                            <a href="#" style="text-decoration: none; color: inherit; height: 58px;">
-                                <img src="{% static 'images/speechbubble-1-1@2x.png' %}" alt="" style = "width: 61px; height: 58px;">
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>
         </div>
-
-
-
     </body>
 </html>
+
+<script>
+    function likePost(postId) {
+        fetch(`/post/${postId}/like/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin',
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Use o ID diretamente para atualizar a contagem de curtidas
+            const likesCountElement = document.getElementById(`likes-count-${postId}`);
+            likesCountElement.innerText = data.likes_count;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>

@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:ital,wght@0,400;1,400&display=swap"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&display=swap"/>
+        <title>{% block title %}Post | Brainwave{% endblock %}</title>
+    </head>
+    
+    <body>
+        <div class = "body">
+            <div>
+                <img class = "onda_roxa" src="{% static 'images/onda-roxa@2x.png' %}" alt="">
+                <img class = "mascote" src="{% static 'images/mascote@2x.png' %}" alt="">
+                <img class = "logo" src="{% static 'images/logo@2x.png' %}" alt="">
+                <em  class = "frase_efeito" >“Conectando mentes acadêmicas” - GRAN</em>
+                <div class = "nome_empresa_1">Brainwave</div>
+                <div class = "nome_empresa_2"><em>Network</em></div>
+                <div class = "cabecalho">
+                    <div class = "header_botao_1">
+                        <a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;"><img class = "home_icon"  src="{% static 'images/home@2x.png' %}" alt=""></a>
+                        <div style="align-self: center; margin-left: 10px;"><a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;">Início</a></div>
+                    </div>
+                    <a href="{% url 'post:new' %}" style="text-decoration: none; color: inherit;"><div class = "header_botao_2"><div class = "simbolo_mais">+</div></div></a>
+                    <div class="header_botao_3">
+                        <div style="align-self: center; margin-right: 10px;">
+                        {% if request.user.is_authenticated %} 
+                            <div class="dropdown">
+                                <p href="javascript:void(0);" class="dropdown-toggle" style="text-decoration: none; margin-top: 20px;">{{ request.user.username }}</p>
+                                <div class="dropdown-menu">
+                                    <a href="{% url 'core:logout' %}" style="text-decoration: none;">Sair</a>
+                                    <a href="{% url 'core:delete' %}" style="text-decoration: none;">Excluir</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'core:register' %}" style="text-decoration: none; color: inherit;">Cadastro</a>
+                            <a href="{% url 'core:login' %}" style="text-decoration: none; color: inherit;">Login</a>
+                        {% endif %}
+                    </div>
+
+                    <a href="{% url 'core:brainwave' %}" style="text-decoration: none; color: inherit;">
+                        <img class="login_icon" src="{% static 'images/pessoa@2x.png' %}" alt="">
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="corpo">
+                <div class = "em_alta">
+                    <h1 style="color: #ee00ff; font-size: 35pt; text-decoration: underline;">Em Alta</h1>
+                    <ol>
+                        {% for post in posts_by_likes %}
+                            <a href="{% url 'post:detail' pk=post.id %}" style="text-decoration: underline; color: inherit; height: 58px; font-family: Lucida Console, monospace;">
+                                <li style="margin-left: 40px; padding-top: 10px;">{{ post.titulo }}</li>
+                            </a>
+                        {% endfor %}
+                    </ol>
+                </div>
+            
+
+                <div class = "atuais">
+                    <div class = "post">
+                        <div class = "titulo">
+                            <p style="text-decoration: none; color: #ee00ff; font-style: italic; font-family: Lucida Console, monospace; opacity: 0.9;">{{ post.created_by.username }}</p>
+                            <h1 style="text-decoration: none; color: #ee00ff; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">{{ post.titulo }}</h1>
+                        </div>
+
+                        <p style="text-decoration: none; color: white;  text-align: justify; text-justify: inter-word; font-family: Lucida Console, monospace; opacity: 0.9;">{{ post.texto }}</p>
+
+                        <form style="display: flex; justify-content: center; align-items: center; padding-top: 30px; gap: 10px;">
+                            <p id="likes-count">{{ post.likes.count }}</p>
+                            <button type="button" onclick="likePost({{ post.id }})" style="border: none; appearance: none; background-color: inherit;">
+                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style="width: 50px; height: 47.4px;">
+                            </button>
+                        </form>
+                    </div>
+                    
+
+                    <form class="novo_post" method="post" action="{% url 'post:post_detail' pk=post.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ comment_form.texto }}
+                        <button type="submit">
+                            <img src="{% static 'images/enviar-1@2x.png' %}" alt="" style = "width: 50px; height: 47.4px;"> 
+                        </button>
+                    </form>
+
+                    {% for comment in comments %}
+                    <div class="post_comment">
+                        <div class="titulo">
+                            <p style="text-decoration: none; color: #ee00ff; font-style: italic; font-family: Lucida Console, monospace; opacity: 0.9;">{{ comment.user.username }}</p>
+                            <img src="{% static 'images/resposta-1-3@2x.png' %}" alt="" style="width: 60px;height: 50px;">
+                        </div>
+                        <p style="text-decoration: none; color: white; text-align: justify; text-justify: inter-word; font-family: Lucida Console, monospace; opacity: 0.9;">{{ comment.texto }}</p>
+                        <div style="display: flex; justify-content: center; align-items: center; padding-top: 30px; gap: 10px;">
+                            <p>3</p>
+                            <button class="like-comment" style="border: none; appearance: none; background-color: inherit;">
+                                <img src="{% static 'images/brain-1@2x.png' %}" alt="" style="width: 50px; height: 47.4px;">
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    function likePost(postId) {
+        fetch(`/post/${postId}/like/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin',
+        })
+        .then(response => response.json())
+        .then(data => {
+            const likesCountElement = document.getElementById('likes-count');
+            likesCountElement.innerText = data.likes_count;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+
+
+

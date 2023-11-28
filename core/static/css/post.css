@@ -17,7 +17,7 @@
     padding: 20px 25px;
 
     border-radius: 79px;
-    border: 2px solid var(--color-black);
+    border: 0px;
     background-color: var(--color-blueviolet);
 }
 
@@ -25,34 +25,44 @@
     resize: none;
 
     width: 1050px;
-    height: 400px;
+    height: 200px;
     
     padding: 20px 50px;
     
     font-size: 32px;
     line-height: 40px;
     color: white;
-
+    
     border-radius: 79px;
     border: 2px solid var(--color-black);
     background-color: var(--color-blueviolet);
 }
 
-input::placeholder{
-    font-style: italic;
-    text-align: center;
-
-    color: white;
-    opacity: 0.7;
-}
-
-textarea::placeholder{
-    color: white;
-    opacity: 0.7;
-}
 
 .novo_post button{
     border: none;
     appearance: none;
     background-color: inherit;
+}
+
+.post_comment{
+    width: 1145px;
+    height: auto;
+    padding: 15px 40px;
+
+    border-radius: var(--br-41xl);
+    background-color: var(--color-blueviolet);
+    border: 2px solid var(--color-black);
+    box-sizing: border-box;
+    color: white;
+    font-family: var(--font-arial);
+    font-size: var(--font-size-13xl);
+}
+
+.post_comment .titulo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 50px;
 }

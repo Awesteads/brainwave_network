@@ -17,6 +17,8 @@ def items(request):
     if query:
         items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
+    items = items.order_by('-price')
+
     return render(request, 'item/items.html', {
         'items': items,
         'query': query,
